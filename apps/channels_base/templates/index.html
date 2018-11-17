@@ -25,7 +25,7 @@
         /* body ::after{
             opacity: 0.6;
         } */
-        div{
+        #login, #register{
             /* background-image: url("{% static 'img/foxHead.png' %}");
             background-repeat: no-repeat; */
             display: inline-block;
@@ -41,6 +41,16 @@
         #login{
             /* margin-top:-50%; */
             margin-left: 20%;
+        }
+        #disclaimer{
+            margin-left:3%;
+        }
+        #disclaimer, h2{
+            width:75%;
+            margin-left: 8%;
+        }
+        #disclaimer > h1{
+            text-decoration-line: underline;
         }
     </style>
     {% if messages %}
@@ -68,6 +78,10 @@
                 <input type='submit' value='Log In'>
             </form>
         </div>
+    </div>
+    <div id="disclaimer">
+        <h1>DISCLAIMER:</h1>
+        <h2>This chat is provided as is and for free. Do not post any sensitive information in any of the chat rooms as they are not private and there is currently no listing of people who are currently in any room. You never know who might be watching.</h2>
     </div>
 </body>
 </html>
