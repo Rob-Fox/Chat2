@@ -4,12 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>{{request.session.room_name}}, {{request.session.user}}</title>
+    {% load static %}
+    <script src="{% static 'jquery-3.3.1.min.js' %}"></script>
 </head>
 <body>
-    <textarea id='chat_log' cols='100' rows='20'></textarea><br>
+    <style>
+        html, body{
+            margin: 0px;
+            height: 90%;
+        }
+        #room_select_header, #room_name, #r_n_submit{
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #chat{
+            width: 100%;
+            height: 100%;
+            margin-left:10%;
+        }
+        #header{
+            margin-left: -30px;
+        }
+        #chat_log{
+            width:80%;
+            height: 60%;
+            /* margin-top:5%;
+            margin-left: 50px; */
+            /* background-color: #515964; */
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+        }
+    </style>
+    <div id='chat'>
+        <h2 id='header'> Lobby Chat:</h2>
+        <div id='chat_log'></div>
+        <input id='chat_message_input' type='text' size='91'>
+        <input id='c_m_submit' type='button' value='Send'>
+        <input type='hidden' value='{{request.session.user}}' id='user'>
+    </div>
+
+    <!-- <textarea id='chat_log' cols='100' rows='20'></textarea><br>
     <input id='chat_message_input' type='text' size='100'><br>
     <input id='c_m_submit' type='button' value='Send'>
+    <input type='hidden' id='user' value="{{request.session.user}}"> -->
 </body>
 <script>
     var roomName = {{ room_name_json }};
@@ -21,8 +60,10 @@
     chatSocket.onmessage = function(e){
         var data = JSON.parse(e.data);
         var message = data['message'];
-        document.querySelector('#chat_log').value += (message + '\n');
+        var user = data['user'];
+        $('#chat_log').append("<span class='user'>" + user + "</span><span class = 'message'>" + message + "</span><br>");
     };
+
     chatSocket.onclose = function(e){
         console.error('Chat socket closed unexpectedly');
     };
@@ -37,8 +78,11 @@
     document.querySelector('#c_m_submit').onclick = function(e){
         var messageInputDom = document.querySelector('#chat_message_input');
         var message = messageInputDom.value;
+        var user = $('#user').val();
+        // var user = document.querySelector('#user').value
         chatSocket.send(JSON.stringify({
-            'message': message
+            'user': user + ': ',
+            'message': message,
         }));
 
         messageInputDom.value = '';

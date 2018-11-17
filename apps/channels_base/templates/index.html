@@ -4,25 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Chatsune</title>
+    {% load static %}
 </head>
 <body>
-    Please select your chat room<br>
-    <input id='room_name' type='text'><br>
-    <input id='r_n_submit' type='button' value='enter'>
-
-    <script>
-        document.querySelector('#room_name').focus();
-        document.querySelector('#room_name').onkeyup = function(e){
-            if(e.keyCode == 13){
-                document.querySelector('#r_n_submit').click();
-            }
-        };
-
-        document.querySelector('#r_n_submit').onclick = function(e){
-            var roomName = document.querySelector('#room_name').value;
-            window.location.pathname = '/' + roomName + '/';
-        };
-    </script>
+    <style>
+        html, body{
+            margin:0px;
+            height: 100%;
+        }
+        body{
+            /* background: linear-gradient(0deg, rgba(0, 0, 0), rgba(0, 0, 255), rgba(0, 0, 0)); */
+            /* background: blue;
+            background-image: url("{% static 'img/foxHead.png' %}");
+            opacity: 0.5;
+            background-image: url("{% static 'img/foxHead.png' %}"), linear-gradient(0deg, rgba(0, 0, 0), rgba(0, 0, 255), rgba(0, 0, 0));
+            background-repeat: no-repeat; */
+            
+        }
+        /* body ::after{
+            opacity: 0.6;
+        } */
+        div{
+            /* background-image: url("{% static 'img/foxHead.png' %}");
+            background-repeat: no-repeat; */
+            display: inline-block;
+            margin-left: 10%;
+            margin-top: 5%;
+            /* border-style: solid;
+            border-width: 1px;
+            border-radius: 5%;
+            padding: 20px;
+            padding-top: 0px; */
+            /* background-color: orangered; */
+        }
+        #login{
+            /* margin-top:-50%; */
+            margin-left: 20%;
+        }
+    </style>
+    {% if messages %}
+        {% for message in messages %}
+            <h3>{{message}}</h3>
+        {% endfor %}
+    {% endif %}
+    <div>
+        <div id='register'>
+            <h1>Create an Account:</h1>
+            <form action='/register' method=post>
+                {% csrf_token %}
+                <input type='text' name='Username' placeholder='Username'><br>
+                <input type='password' name='Password' placeholder="Password"><br>
+                <input type='password' name='C_Password' placeholder='Confirm Password'><br>
+                <input type='submit' value="Register">
+            </form>
+        </div>
+        <div id='login'>
+            <h1>Log In:</h1>
+            <form action='/login' method=post>
+                {% csrf_token %}
+                <input type='text' name='L_Username' placeholder='Username'><br>
+                <input type='password' name='L_Password' placeholder='Password'><br>
+                <input type='submit' value='Log In'>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
