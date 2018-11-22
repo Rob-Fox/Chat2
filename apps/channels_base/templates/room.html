@@ -10,7 +10,7 @@
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/room_script.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/chat_style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/chat_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/room_style.css' %}">
 </head>
 
 <body>
@@ -21,7 +21,6 @@
         <input id='c_m_submit' type='button' value='Send'>
         <input type='hidden' value='{{request.session.user}}' id='user'>
     </div>
-
 </body>
 
 </html>
