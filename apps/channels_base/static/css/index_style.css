@@ -1,0 +1,59 @@
+html, body{
+    margin:0px;
+    height: 100%;
+}
+body{
+    /* background: linear-gradient(0deg, rgba(0, 0, 0), rgba(0, 0, 255), rgba(0, 0, 0)); */
+    /* background: blue; */
+    /* background-image: url("{% static 'img/foxHead.png' %}"); */
+    /* opacity: 0.5; */
+    /* background-image: url("{% static 'img/foxHead.png' %}"), linear-gradient(0deg, rgba(0, 0, 0), rgba(0, 0, 255), rgba(0, 0, 0)); */
+    background-repeat: no-repeat;
+    
+}
+/* body ::after{
+    opacity: 0.6;
+} */
+#login, #register{
+    /* background-image: url("{% static 'img/foxHead.png' %}");
+    background-repeat: no-repeat; */
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 5%;
+    /* border-style: solid;
+    border-width: 1px;
+    border-radius: 5%;
+    padding: 20px;
+    padding-top: 0px; */
+    /* background-color: orangered; */
+}
+#login{
+    /* margin-top:-50%; */
+    margin-left: 20%;
+}
+#disclaimer{
+    margin-left:3%;
+}
+#disclaimer{
+    width:75%;
+    margin-left: 8%;
+}
+#disclaimer > h2{
+    width: 75%;
+}
+#disclaimer > h1{
+    text-decoration-line: underline;
+}
+#chat{
+    width: 50%;
+    height: 40%;
+}
+#U_N, #chat_message_input{
+    display: inline-block;
+}
+#U_N{
+    width: 15%;
+}
+#chat_message_input{
+    width:40%;
+}
